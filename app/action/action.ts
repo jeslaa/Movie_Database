@@ -2,7 +2,7 @@
 
 import Movie from "@/models/Movie";
 
-const addPost = async ({
+export const addPost = async ({
   title,
   description,
   genre,
@@ -30,4 +30,6 @@ const addPost = async ({
   }
 };
 
-export default addPost;
+export const getPosts = async () => {
+  return Movie.find();
+};

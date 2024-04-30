@@ -1,19 +1,60 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import { getPosts } from "@/app/action/action";
 
 const Home = () => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const moviesData = await getPosts();
+        setMovies(moviesData);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
   return (
     <div className="">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis hic
-      dolorem magni! Amet odio obcaecati commodi repellendus explicabo quia quam
-      pariatur? Pariatur consectetur asperiores quo, distinctio amet eaque
-      fugiat exercitationem possimus atque labore aperiam error ipsum vero odio
-      ut inventore provident voluptatibus. Culpa in nobis suscipit quidem
-      repellat! Nesciunt nisi dolorem corporis itaque, quod minima aliquam
-      officia ad? Maxime vitae ipsa amet, modi ut sequi ipsum sit reiciendis
-      enim est incidunt, tempora cupiditate commodi! Quibusdam esse magni
-      laboriosam eius amet repellat aliquid, accusamus quam ad aut fugit dolorum
-      debitis magnam. Aut facilis quidem, harum tempora repellat cumque
-      recusandae labore quibusdam.
+      {movies.map((movie, key) => (
+        <div key={key} className="relative h-full bg-gradient-to-l from-gray">
+          <img
+            src={movie.image}
+            alt={movie.title}
+            className="w-screen h-full mix-blend-overlay"
+          />
+          <div className="absolute top-20 left-10 sm:left-20 sm:top-1/4">
+            {/*Title*/}
+            <h2 className="sm:text-6xl text-2xl w-full lg:w-2/6 font-bold">
+              {movie.title}
+            </h2>
+
+            {/*Description*/}
+            <p className="w-4/6 md:mt-4">{movie.description}</p>
+
+            {/*Score*/}
+            <div className="flex gap-x-2 mt-2">
+              <p>{movie.score}</p>
+
+              {/*Year*/}
+              <div className="w-px h-4 bg-white mt-1"></div>
+              <p>{movie.publishingYear}</p>
+
+              {/*Length*/}
+              <div className="w-px h-4 bg-white mt-1"></div>
+              <p>{movie.length}</p>
+
+              {/*Genre*/}
+              <div className="w-px h-4 bg-white mt-1"></div>
+              <p className="">{movie.genre.join(", ")}</p>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

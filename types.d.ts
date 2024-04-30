@@ -2,8 +2,8 @@ type Movie = {
   title: string;
   description: string;
   genre: string[];
-  publishingYear: number;
+  publishingYear: string;
   image: string;
-  score: number;
+  score: string;
   length: string; //Unsure about this type
 };

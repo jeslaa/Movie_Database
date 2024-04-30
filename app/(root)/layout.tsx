@@ -6,7 +6,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
     <main>
       <Navbar />
 
-      <div className="pt-24">{children}</div>
+      <div className="pt-0">{children}</div>
     </main>
   );
 };

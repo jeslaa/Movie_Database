@@ -1,16 +1,16 @@
 "use client";
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import addPost from "@/app/action/action";
+import { addPost } from "@/app/action/action";
 
 const Page = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     genre: [],
-    publishingYear: 0,
+    publishingYear: "",
     image: "",
-    score: 0,
+    score: "",
     length: "",
   });
 
@@ -22,6 +22,7 @@ const Page = () => {
     }));
   };
 
+  //Submit function
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -31,9 +32,9 @@ const Page = () => {
         title: "",
         description: "",
         genre: [],
-        publishingYear: 0,
+        publishingYear: "",
         image: "",
-        score: 0,
+        score: "",
         length: "",
       });
     } catch (error) {
@@ -42,15 +43,19 @@ const Page = () => {
   };
 
   return (
-    <div className="flex w-full justify-center">
+    <div className="flex w-full justify-center pt-24">
       <form
         onSubmit={handleSubmit}
         className="text-white flex flex-col gap-y-2 w-9/12 md:w-4/12"
       >
+        <h1 className="text-white md:text-5xl text-4xl mb-5 flex justify-center">
+          Add a Movie
+        </h1>
         <label htmlFor="title">Title:</label>
         <input
           type="text"
           className="text-black"
+          placeholder="Spiderman"
           id="title"
           value={formData.title}
           onChange={handleChange}
@@ -60,6 +65,7 @@ const Page = () => {
         <input
           type="text"
           className="text-black"
+          placeholder="A man who can shoot spider web"
           id="description"
           value={formData.description}
           onChange={handleChange}
@@ -69,6 +75,7 @@ const Page = () => {
         <input
           type="text"
           className="text-black"
+          placeholder="Action"
           id="genre"
           value={formData.genre}
           onChange={handleChange}
@@ -79,6 +86,7 @@ const Page = () => {
           type="number"
           className="text-black"
           id="publishingYear"
+          placeholder="1992"
           value={formData.publishingYear}
           onChange={handleChange}
         />
@@ -87,6 +95,7 @@ const Page = () => {
         <input
           type="text"
           className="text-black"
+          placeholder="http://localhost:3000/postMovie"
           id="image"
           value={formData.image}
           onChange={handleChange}
@@ -98,6 +107,7 @@ const Page = () => {
           className="text-black"
           id="score"
           value={formData.score}
+          placeholder="10"
           onChange={handleChange}
         />
 
@@ -106,6 +116,7 @@ const Page = () => {
           type="text"
           className="text-black"
           id="length"
+          placeholder="1h 32m"
           value={formData.length}
           onChange={handleChange}
         />
