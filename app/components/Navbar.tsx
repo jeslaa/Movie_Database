@@ -18,7 +18,7 @@ const Navbar = () => {
             Home
           </Link>
 
-          <Link href="/" className="hover:underline md:mr-20">
+          <Link href="/postMovie" className="hover:underline md:mr-20">
             Post
           </Link>
 
