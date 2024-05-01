@@ -2,6 +2,8 @@
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
 
+const input = "rounded-md p-2";
+
 const Page = () => {
   const [formData, setFormData] = useState({
     title: "",
@@ -64,7 +66,7 @@ const Page = () => {
         <label htmlFor="title">Title:</label>
         <input
           type="text"
-          className="text-black"
+          className={`text-black  ${input}`}
           placeholder="Spiderman"
           id="title"
           value={formData.title}
@@ -74,7 +76,7 @@ const Page = () => {
         <label htmlFor="description">Description:</label>
         <input
           type="text"
-          className="text-black"
+          className={`text-black  ${input}`}
           placeholder="A man who can shoot spider web"
           id="description"
           value={formData.description}
@@ -84,7 +86,7 @@ const Page = () => {
         <label htmlFor="genre">Genre:</label>
         <input
           type="text"
-          className="text-black"
+          className={`text-black  ${input}`}
           placeholder="Action"
           id="genre"
           value={formData.genre}
@@ -94,7 +96,7 @@ const Page = () => {
         <label htmlFor="publishingYear">Publishing Year:</label>
         <input
           type="number"
-          className="text-black"
+          className={`text-black  ${input}`}
           id="publishingYear"
           placeholder="1992"
           value={formData.publishingYear}
@@ -104,7 +106,7 @@ const Page = () => {
         <label htmlFor="image">Image:</label>
         <input
           type="text"
-          className="text-black"
+          className={`text-black  ${input}`}
           placeholder="http://localhost:3000/postMovie"
           id="image"
           value={formData.image}
@@ -114,7 +116,7 @@ const Page = () => {
         <label htmlFor="score">Score:</label>
         <input
           type="number"
-          className="text-black"
+          className={`text-black  ${input}`}
           id="score"
           value={formData.score}
           placeholder="8.7"
@@ -124,17 +126,17 @@ const Page = () => {
         <label htmlFor="length">Length:</label>
         <input
           type="text"
-          className="text-black"
+          className={`text-black  ${input}`}
           id="length"
           placeholder="1h 32m"
           value={formData.length}
           onChange={handleChange}
         />
 
-        <div>
+        <div className="flex justify-center">
           <button
             type="submit"
-            className="bg-white text-black mt-4 w-32 h-8 rounded-sm hover:pointer"
+            className="bg-white text-black mt-4 w-32 h-8 rounded-md hover:pointer"
           >
             Submit
           </button>
