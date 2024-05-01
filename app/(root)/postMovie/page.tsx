@@ -1,7 +1,6 @@
 "use client";
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { addPost } from "@/app/action/action";
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -25,23 +24,34 @@ const Page = () => {
   //Submit function
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const submitData: Movie = {
+      title: formData.title,
+      description: formData.description,
+      genre: formData.genre,
+      publishingYear: formData.publishingYear,
+      score: formData.score,
+      image: formData.image,
+      length: formData.length,
+    };
     try {
-      await addPost(formData);
-      console.log("Post added successfully!");
-      setFormData({
-        title: "",
-        description: "",
-        genre: [],
-        publishingYear: "",
-        image: "",
-        score: "",
-        length: "",
+      const res = await fetch("/api/movies", {
+        method: "POST",
+        body: JSON.stringify(submitData),
+        headers: {
+          "content-type": "application/json",
+        },
       });
+      const responseData = await res.json();
+      console.log(responseData);
+      if (res.ok) {
+        console.log("Everything is good");
+      } else {
+        console.log("Something went wrong");
+      }
     } catch (error) {
-      console.error("Error adding post:", error);
+      console.log(error);
     }
   };
-
   return (
     <div className="flex w-full justify-center pt-24">
       <form
@@ -107,7 +117,7 @@ const Page = () => {
           className="text-black"
           id="score"
           value={formData.score}
-          placeholder="10"
+          placeholder="8.7"
           onChange={handleChange}
         />
 
