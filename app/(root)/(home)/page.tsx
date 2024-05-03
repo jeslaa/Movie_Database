@@ -1,59 +1,93 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Home = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [banners, setBanners] = useState<Banner[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const fetchBanners = async () => {
       try {
-        const response = await fetch("/api/movies");
+        const response = await fetch("/api/banner");
         if (!response.ok) {
-          throw new Error("Failed to fetch movies");
+          throw new Error("Failed to fetch banners");
         }
-        const moviesData = await response.json();
-        setMovies(moviesData);
+        const bannersData = await response.json();
+        setBanners(bannersData);
       } catch (error) {
-        console.error("Error fetching movies:", error);
+        console.error("Error fetching banners:", error);
       }
     };
 
-    fetchMovies();
+    fetchBanners();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNextBanner();
+    }, 10000); // Rotate every 10 seconds
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+  const goToPreviousBanner = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? banners.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToNextBanner = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === banners.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   return (
     <div className="">
-      {movies.map((movie, key) => (
-        <div key={key} className="relative h-full bg-gradient-to-l from-gray">
-          <img
-            src={movie.image}
-            alt={movie.title}
-            className="w-screen h-full mix-blend-overlay"
-          />
+      {banners.map((banner, index) => (
+        <div
+          key={index}
+          className={`relative h-full bg-gradient-to-l from-gray ${
+            index === currentIndex ? "" : "hidden"
+          }`}
+        >
+          {/* Container for image and arrows */}
+          <div className="relative">
+            <div>
+              <img
+                src={banner.image}
+                alt={banner.title}
+                className="w-screen h-full mix-blend-overlay"
+              />
+            </div>
+
+            {/* Absolute positioning for arrows */}
+            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-full text-white flex justify-between md:pl-10 md:pr-10 text-lg pl-5 pr-5">
+              <FaArrowLeft
+                className="cursor-pointer"
+                onClick={goToPreviousBanner}
+              />
+              <FaArrowRight
+                className="cursor-pointer"
+                onClick={goToNextBanner}
+              />
+            </div>
+          </div>
+          {/* Details */}
           <div className="absolute top-20 left-10 sm:left-20 sm:top-1/4">
-            {/*Title*/}
             <h2 className="sm:text-6xl text-2xl w-full lg:w-2/6 font-bold">
-              {movie.title}
+              {banner.title}
             </h2>
-
-            {/*Description*/}
-            <p className="w-4/6 md:mt-4">{movie.description}</p>
-
-            {/*Score*/}
+            <p className="w-4/6 md:mt-4">{banner.description}</p>
             <div className="flex gap-x-2 mt-2">
-              <p>{movie.score}</p>
-
-              {/*Year*/}
+              <p>{banner.score}</p>
               <div className="w-px h-4 bg-white mt-1"></div>
-              <p>{movie.publishingYear}</p>
-
-              {/*Length*/}
+              <p>{banner.publishingYear}</p>
               <div className="w-px h-4 bg-white mt-1"></div>
-              <p>{movie.length}</p>
-
-              {/*Genre*/}
+              <p>{banner.length}</p>
               <div className="w-px h-4 bg-white mt-1"></div>
-              <p className="">{movie.genre.join(", ")}</p>
+              <p className="">{banner.genre.join(", ")}</p>
             </div>
           </div>
         </div>

@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async () => {
   await connectToDB();
   const data = await Banner.find();
-
   return NextResponse.json(data);
 };
 
@@ -18,7 +17,7 @@ export const POST = async (req: NextRequest) => {
     await newBanner.save();
     return NextResponse.json(newBanner);
   } catch (error) {
-    console.error("Error occurred while adding movie:", error);
+    console.error("Error occurred while adding banner:", error);
     return NextResponse.error();
   }
 };
