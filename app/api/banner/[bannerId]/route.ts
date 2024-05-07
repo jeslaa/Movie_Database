@@ -1,7 +1,7 @@
 import Banner from "@/models/Banner";
 import { NextResponse } from "next/server";
 
-export const getbannersById = async (bannerId: string) => {
+export const getBannersById = async (bannerId: string) => {
   try {
     const banner = await Banner.findById(bannerId);
     return banner;
@@ -15,7 +15,7 @@ export const GET = async (req: Request, context: any) => {
   const bannerId = params.bannerId;
 
   try {
-    const banner = await getbannersById(bannerId);
+    const banner = await getBannersById(bannerId);
     return NextResponse.json({
       banner,
     });

@@ -6,7 +6,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Home = () => {
   const [banners, setBanners] = useState<Banner[]>([]);
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -78,23 +77,25 @@ const Home = () => {
             </div>
           </div>
           {/* Details */}
-          <Link href={"/postMovie"}>
-            <div className="absolute top-20 left-10 sm:left-20 sm:top-1/4 w-3/4 cursor-pointer hover:underline">
-              <h2 className="sm:text-6xl text-2xl w-full lg:w-2/6 font-bold cursor-pointer">
-                {banner.title}
-              </h2>
-              <p className="w-4/6 md:mt-4 truncate sm:w-full lg:w-4/6">
-                {banner.description}
-              </p>
-              <div className="flex gap-x-2 mt-2">
-                <p>{banner.score}</p>
-                <div className="w-px h-4 bg-white mt-1"></div>
-                <p>{banner.publishingYear}</p>
-                <div className="w-px h-4 bg-white mt-1"></div>
-                <p>{banner.length}</p>
-                <div className="w-px h-4 bg-white mt-1"></div>
-                <p className="">{banner.genre.join(", ")}</p>
-              </div>
+          <Link
+            href={`/banner/${banner._id}`}
+            passHref
+            className="absolute top-20 left-10 sm:left-20 sm:top-1/4 w-3/4 cursor-pointer hover:underline"
+          >
+            <h2 className="sm:text-6xl text-2xl w-full lg:w-2/6 font-bold cursor-pointer">
+              {banner.title}
+            </h2>
+            <p className="w-4/6 md:mt-4 truncate sm:w-full lg:w-4/6">
+              {banner.description}
+            </p>
+            <div className="flex gap-x-2 mt-2">
+              <p>{banner.score}</p>
+              <div className="w-px h-4 bg-white mt-1"></div>
+              <p>{banner.publishingYear}</p>
+              <div className="w-px h-4 bg-white mt-1"></div>
+              <p>{banner.length}</p>
+              <div className="w-px h-4 bg-white mt-1"></div>
+              <p className="">{banner.genre.join(", ")}</p>
             </div>
           </Link>
         </div>

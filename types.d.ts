@@ -1,4 +1,5 @@
 type Movie = {
+  _id: string;
   title: string;
   description: string;
   genre: string[];
@@ -9,6 +10,7 @@ type Movie = {
 };
 
 type Banner = {
+  _id: string;
   title: string;
   description: string;
   genre: string[];

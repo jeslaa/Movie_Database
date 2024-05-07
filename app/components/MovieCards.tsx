@@ -40,10 +40,12 @@ export const MovieCards = () => {
               <p>{movie.score}</p>
               <p>{movie.title}</p>
             </div>
-            <Link href={"/"} className="">
-              <div className="absolute bottom-2 right-4 p-4 bg-black rounded-sm">
-                <FaArrowRight></FaArrowRight>
-              </div>
+            <Link
+              href={`/movie/${movie._id}`}
+              passHref
+              className="absolute bottom-2 right-4 p-4 bg-black rounded-sm"
+            >
+              <FaArrowRight />
             </Link>
           </div>
         ))}

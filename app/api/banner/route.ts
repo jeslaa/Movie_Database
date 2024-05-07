@@ -1,7 +1,6 @@
 import connectToDB from "@/lib/server";
 import Banner from "@/models/Banner";
 import BannerModel from "@/models/Banner";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async () => {
@@ -19,27 +18,5 @@ export const POST = async (req: NextRequest) => {
   } catch (error) {
     console.error("Error occurred while adding banner:", error);
     return NextResponse.error();
-  }
-};
-
-export const getBannerById = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-) => {
-  try {
-    await connectToDB();
-
-    const { id } = req.query as { id: string };
-
-    const banner = await Banner.findById(id);
-
-    if (!banner) {
-      return res.status(404).json({ error: "Banner not found" });
-    }
-
-    return res.status(200).json(banner);
-  } catch (error) {
-    console.error("Error occurred while fetching banner:", error);
-    return res.status(500).json({ error: "Failed to fetch banner" });
   }
 };
