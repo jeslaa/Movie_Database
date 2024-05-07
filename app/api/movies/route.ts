@@ -2,6 +2,7 @@ import connectToDB from "@/lib/server";
 import Movie from "@/models/Movie";
 import { NextRequest, NextResponse } from "next/server";
 import MovieModel from "@/models/Movie";
+import { NextApiRequest } from "next";
 
 export const GET = async () => {
   await connectToDB();

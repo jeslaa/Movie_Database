@@ -4,8 +4,8 @@ import { BsSearch } from "react-icons/bs";
 
 const Navbar = () => {
   return (
-    <nav className="fixed w-full bg-transparent p-5 top-0 z-10">
-      <div className="flex-1 flex flex-row justify-between text-white items-center text-lg ">
+    <nav className="fixed w-full bg-transparent m-5 top-0 z-10">
+      <div className="flex-1 flex flex-row justify-between text-white items-center text-lg mr-10 md">
         <div className="flex flex-row">
           <div className="bg-yellow rounded-md p-2 font-bold text-black">
             New
