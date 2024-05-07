@@ -22,7 +22,7 @@ export const MovieCards = () => {
   }, []);
 
   return (
-    <div className="mt-10 sm:mx-20 relative flex flex-col justify-center items-center">
+    <div className="mt-10 relative flex flex-col justify-center items-center mx-2">
       {/* "Movies" title */}
       <h1 className="text-3xl underline mb-5">Movies</h1>
 
@@ -31,7 +31,7 @@ export const MovieCards = () => {
         {movies.map((movie, index) => (
           <div
             key={index}
-            className="max-w-64 bg-lighterBlack h-56 relative sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-5 sm:mr-5"
+            className="max-w-64 bg-lighterBlack h-56 relative sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-5 mr-5"
           >
             <div className="">
               <img src={movie.image} alt={movie.title} className="" />
