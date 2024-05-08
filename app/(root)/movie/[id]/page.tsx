@@ -38,6 +38,8 @@ const MovieSpec = ({ params }: { params: { id: string } }) => {
             </div>
             {/* Container for other details */}
             <div className="flex items-center gap-x-2 sm:gap-x-6">
+              <div className="w-px h-4 bg-white mt-1"></div>
+
               <p className="rounded-lg bg-gray-dark p-px md:p-2">
                 {movie.score}
               </p>
@@ -51,7 +53,7 @@ const MovieSpec = ({ params }: { params: { id: string } }) => {
               </p>
             </div>
           </div>
-          <p className="mt-5 text-lg mb-5">{movie.description}</p>
+          <p className="mt-5 text-lg mb-5 sm:mb-10">{movie.description}</p>
         </div>
       ) : (
         <p>Loading...</p>
