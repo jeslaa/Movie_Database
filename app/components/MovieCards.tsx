@@ -43,7 +43,7 @@ export const MovieCards = () => {
             <Link
               href={`/movie/${movie._id}`}
               passHref
-              className="absolute bottom-2 right-4 p-4 bg-black rounded-sm"
+              className="absolute bottom-2 right-4 p-4 bg-black rounded-sm hover:bg-yellow"
             >
               <FaArrowRight />
             </Link>
