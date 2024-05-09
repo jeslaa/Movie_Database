@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { BsSearch } from "react-icons/bs";
+import Search from "./Search";
 
 const Navbar = () => {
   return (
@@ -22,9 +22,8 @@ const Navbar = () => {
             Post
           </Link>
 
-          <div className="w-px h-5 bg-white"></div>
-
-          <BsSearch className="text-lg cursor-pointer mr-2 md:mr-20 md:text-xl" />
+          <div className="w-px h-5 bg-white max-sm:hidden"></div>
+          <Search />
         </div>
       </div>
     </nav>
